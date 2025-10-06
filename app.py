@@ -1,10 +1,8 @@
 import streamlit as st
 import pandas as pd
 import plotly.express as px
+import io
 
-# Read the dataset
-file_path = 'vehicles_us.csv'
-df = pd.read_csv(file_path)
 
 # Header
 st.header('US Vehicles Data Dashboard')
@@ -20,6 +18,22 @@ df = pd.read_csv(file_path)
 df.head()
 #Display the dataframe
 st.dataframe(df.head())
+
+# Dataset diagnostics
+st.subheader("Dataset Diagnostics")
+st.write("Let's inspect the dataset to ensure it's ready for visualization.")
+
+# Show shape
+st.write("**Shape of the dataset:**", df.shape)
+
+# Show missing values
+st.write("**Missing values per column:**")
+st.write(df.isna().sum())
+
+# Show data types
+st.write("**Data types of each column:**")
+st.write(df.dtypes)
+
 
 # Show first 5 rows
 st.header('Display Basic Dataset Information')
@@ -38,7 +52,8 @@ st.text(info_text)
 # Summary statistics for numerical columns
 st.header('Summary Statistics')
 st.write("Let's look at summary statistics for the numerical columns.")
-df.describe().T
+st.dataframe(df.describe().T)
+
 
 # Histograms
 st.header('Histograms')
