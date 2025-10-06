@@ -14,6 +14,7 @@ st.write("Here we will show how exploratory data analysis on the `vehicles_us.cs
 # Load the dataset
 st.header('Dataset')
 st.write('Load the vehicles dataset from the CSV file.')
+
 file_path = '../vehicles_us.csv'
 df = pd.read_csv(file_path)
 df.head()
