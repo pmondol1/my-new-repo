@@ -1,3 +1,6 @@
+import os
+os.environ["STREAMLIT_SERVER_PORT"] = os.getenv("PORT", "10000")
+
 import streamlit as st
 import pandas as pd
 
