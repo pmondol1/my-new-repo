@@ -18,56 +18,77 @@ st.write('Load the vehicles dataset from the CSV file.')
 file_path = 'vehicles_us.csv'
 df = pd.read_csv(file_path)
 df.head()
+#Display the dataframe
+st.dataframe(df.head())
 
 # Show first 5 rows
-st.header(' Display Basic Dataset Information')
+st.header('Display Basic Dataset Information')
 st.write("Let's look at the first few rows, column names, and data types to understand the structure.")
-df.head()
+
+# Display first 5 rows
+st.dataframe(df.head())
+
 # Show column names and data types
-df.info()
+buffer = io.StringIO()
+df.info(buf=buffer)
+info_text = buffer.getvalue()
+st.text(info_text)
+
 
 # Summary statistics for numerical columns
 st.header('Summary Statistics')
 st.write("Let's look at summary statistics for the numerical columns.")
 df.describe().T
 
-# HistogramDistribution
+# Histograms
 st.header('Histograms')
 st.write("Distribution of selected numerical features.")
-st.subheader('Price ')
-# Histogram of price
-px.histogram(df, x='price', nbins=50, title='Distribution of Price')
-# Histogram of odometer
-px.histogram(df, x='odometer', nbins=50, title='Distribution of Odometer Reading')
+st.subheader('Price')
+fig_price = px.histogram(df, x='price', nbins=50, title='Distribution of Price')
+st.plotly_chart(fig_price)
 
-# Scatterplot
-st.header( 'Scatterplots')
+st.subheader('Odometer')
+fig_odometer = px.histogram(df, x='odometer', nbins=50, title='Distribution of Odometer Reading')
+st.plotly_chart(fig_odometer)
+
+# Scatterplots
+st.header('Scatterplots')
 st.write("Explore relationships between variables using scatterplots.")
 st.subheader('Price vs Odometer')
-# Scatterplot: price vs odometer
-px.scatter(df, x='odometer', y='price', title='Price vs Odometer')
-# Scatterplot: price vs year
-px.scatter(df, x='model_year', y='price', title='Price vs Year')
+fig_scatter1 = px.scatter(df, x='odometer', y='price', title='Price vs Odometer')
+st.plotly_chart(fig_scatter1)
 
-# Box plot: price by condition
+st.subheader('Price vs Year')
+fig_scatter2 = px.scatter(df, x='model_year', y='price', title='Price vs Year')
+st.plotly_chart(fig_scatter2)
+
+# Box plot
 st.header('Box Plots')
-st.write("Visualize price distribution acros different conditions.")
-px.box(df, x='condition', y='price', title='Price Distribution by Condition')
+st.write("Visualize price distribution across different conditions.")
+fig_box = px.box(df, x='condition', y='price', title='Price Distribution by Condition')
+st.plotly_chart(fig_box)
 
-# Bar chart: average price by model
+# Bar chart
 st.header('Bar Charts')
 st.write("Average price by vehicle model.")
 avg_price_by_model = df.groupby('model')['price'].mean().reset_index()
-px.bar(avg_price_by_model, x='model', y='price', title='Average Price by Model')
+fig_bar = px.bar(avg_price_by_model, x='model', y='price', title='Average Price by Model')
+st.plotly_chart(fig_bar)
 
-# Correlation heatmap for numerical features
+# Correlation heatmap
 st.header('Correlation Heatmap')
 st.write("Correlation heatmap for numerical features.")
 import plotly.figure_factory as ff
 corr = df.corr(numeric_only=True).round(2)
-fig = ff.create_annotated_heatmap(z=corr.values, x=list(corr.columns), y=list(corr.index), colorscale='Viridis')
-fig.update_layout(title='Correlation Heatmap')
-fig.show()
+fig_heatmap = ff.create_annotated_heatmap(
+    z=corr.values,
+    x=list(corr.columns),
+    y=list(corr.index),
+    colorscale='Viridis'
+)
+fig_heatmap.update_layout(title='Correlation Heatmap')
+st.plotly_chart(fig_heatmap)
+
 
 # Checkbox to filter by condition
 show_condition = st.checkbox('Show only excellent condition vehicles')
