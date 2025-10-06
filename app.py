@@ -1,4 +1,3 @@
-
 import streamlit as st
 import pandas as pd
 import plotly.express as px
@@ -27,3 +26,4 @@ if show_condition:
     st.subheader('Price Distribution (Excellent Condition)')
     fig_hist_exc = px.histogram(filtered_df, x='price', nbins=50, title='Price Distribution (Excellent Condition)')
     st.plotly_chart(fig_hist_exc)
+
