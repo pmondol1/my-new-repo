@@ -15,7 +15,9 @@ st.write('Load the vehicles dataset from the CSV file.')
 
 file_path = 'vehicles_us.csv'
 df = pd.read_csv(file_path)
-df.head()
+# Clean up column types to avoid Arrow serialization errors
+df = df.convert_dtypes()
+
 #Display the dataframe
 st.dataframe(df.head())
 
