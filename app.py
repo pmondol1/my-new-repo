@@ -13,6 +13,13 @@ st.write("Here we will show how exploratory data analysis on the `vehicles_us.cs
 st.header('Dataset')
 st.write('Load the vehicles dataset from the CSV file.')
 
+# Clean up the DataFrame before displaying
+df_clean = df.convert_dtypes()  # Converts columns to best possible types
+df_clean = df_clean.fillna('')  # Optional: fill NaNs with empty strings
+
+st.dataframe(df_clean)
+
+
 file_path = 'vehicles_us.csv'
 df = pd.read_csv(file_path)
 # Clean up column types to avoid Arrow serialization errors
