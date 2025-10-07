@@ -16,7 +16,7 @@ st.write('Dataset from the CSV file.')
 file_path = 'vehicles_us.csv'
 df = pd.read_csv(file_path)
 df = df.convert_dtypes()
-df = df.fillna('')
+
 
 # Display the cleaned DataFrame
 st.dataframe(df.head())
