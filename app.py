@@ -39,18 +39,12 @@ st.write(df.dtypes)
 
 
 # Show first 5 rows
-st.header('Display Basic Dataset Information')
+st.header('Basic Dataset Information')
 st.write("Let's look at the first few rows, column names, and data types to understand the structure.")
 
 # Display first 5 rows
 st.dataframe(df.head())
 
-# Show column names and data types
-buffer = io.StringIO()
-df.info(buf=buffer)
-info_text = buffer.getvalue()
-st.text(info_text)
-st.markdown("---")
 
 # Summary statistics for numerical columns
 st.header('Summary Statistics')
