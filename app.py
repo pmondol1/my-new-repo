@@ -6,27 +6,21 @@ import io
 
 # Header
 st.header('US Vehicles Data Dashboard')
-st.write("Here we will show how exploratory data analysis on the `vehicles_us.csv` dataset using pandas and plotly-express. We will visualize and summarize key features to gain insights into the data.")
+st.write("Welcome! This dashboard helps you explore trends in used vehicle listings across the U.S. Use the charts and filters below to uncover insights into pricing, mileage, and more. 🚗📊")
 
 
 # Load the dataset
 st.header('Dataset')
-st.write('Load the vehicles dataset from the CSV file.')
-
-# Clean up the DataFrame before displaying
-df_clean = df.convert_dtypes()  # Converts columns to best possible types
-df_clean = df_clean.fillna('')  # Optional: fill NaNs with empty strings
-
-st.dataframe(df_clean)
-
+st.write('Dataset from the CSV file.')
 
 file_path = 'vehicles_us.csv'
 df = pd.read_csv(file_path)
-# Clean up column types to avoid Arrow serialization errors
 df = df.convert_dtypes()
+df = df.fillna('')
 
-#Display the dataframe
+# Display the cleaned DataFrame
 st.dataframe(df.head())
+st.markdown("---")
 
 # Dataset diagnostics
 st.subheader("Dataset Diagnostics")
@@ -56,13 +50,13 @@ buffer = io.StringIO()
 df.info(buf=buffer)
 info_text = buffer.getvalue()
 st.text(info_text)
-
+st.markdown("---")
 
 # Summary statistics for numerical columns
 st.header('Summary Statistics')
 st.write("Let's look at summary statistics for the numerical columns.")
 st.dataframe(df.describe().T)
-
+st.markdown("---")
 
 # Histograms
 st.header('Histograms')
@@ -74,6 +68,7 @@ st.plotly_chart(fig_price)
 st.subheader('Odometer')
 fig_odometer = px.histogram(df, x='odometer', nbins=50, title='Distribution of Odometer Reading')
 st.plotly_chart(fig_odometer)
+st.markdown("---")
 
 # Scatterplots
 st.header('Scatterplots')
@@ -85,12 +80,14 @@ st.plotly_chart(fig_scatter1)
 st.subheader('Price vs Year')
 fig_scatter2 = px.scatter(df, x='model_year', y='price', title='Price vs Year')
 st.plotly_chart(fig_scatter2)
+st.markdown("---")
 
 # Box plot
 st.header('Box Plots')
 st.write("Visualize price distribution across different conditions.")
 fig_box = px.box(df, x='condition', y='price', title='Price Distribution by Condition')
 st.plotly_chart(fig_box)
+st.markdown("---")
 
 # Bar chart
 st.header('Bar Charts')
@@ -98,6 +95,7 @@ st.write("Average price by vehicle model.")
 avg_price_by_model = df.groupby('model')['price'].mean().reset_index()
 fig_bar = px.bar(avg_price_by_model, x='model', y='price', title='Average Price by Model')
 st.plotly_chart(fig_bar)
+st.markdown("---")
 
 # Correlation heatmap
 st.header('Correlation Heatmap')
@@ -113,12 +111,19 @@ fig_heatmap = ff.create_annotated_heatmap(
 fig_heatmap.update_layout(title='Correlation Heatmap')
 st.plotly_chart(fig_heatmap)
 
+# Sidebar filter for vehicle condition
+st.sidebar.title("Explore Filters")
+st.sidebar.write("Use the dropdowns to customize your view of the data.")
 
-# Checkbox to filter by condition
-show_condition = st.checkbox('Show only excellent condition vehicles')
-if show_condition:
-    filtered_df = df[df['condition'] == 'excellent']
-    st.subheader('Price Distribution (Excellent Condition)')
-    fig_hist_exc = px.histogram(filtered_df, x='price', nbins=50, title='Price Distribution (Excellent Condition)')
-    st.plotly_chart(fig_hist_exc)
+st.sidebar.header("🔍 Filter Options")
+condition = st.sidebar.selectbox("Select vehicle condition", df['condition'].unique())
+
+# Filtered histogram based on sidebar selection
+filtered_df = df[df['condition'] == condition]
+st.subheader(f'Price Distribution ({condition.title()} Condition)')
+fig_hist_filtered = px.histogram(filtered_df, x='price', nbins=50, title=f'Price Distribution ({condition.title()} Condition)')
+st.plotly_chart(fig_hist_filtered)
+
+st.markdown("---")
+st.write("Thank you for exploring the dashboard!🚙📈")
 
