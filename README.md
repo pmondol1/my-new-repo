@@ -19,3 +19,5 @@ cd my-new-repo
 3. Run the app: streamlit run app.py
 
 Make sure the vehicles_us.csv file is in the root directory of the project.
+
+project url: https://my-new-repo-d50l.onrender.com
