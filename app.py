@@ -38,7 +38,7 @@ if st.checkbox("Show only vehicles in excellent condition"):
     # This block runs ONLY if the checkbox is checked
     filtered_df = df[df["condition"] == "excellent"]
     fig_filtered = px.histogram(filtered_df, x="price", title="Price Distribution (Excellent Condition)")
-st.plotly_chart(fig_filtered)
+    st.plotly_chart(fig_filtered)
 
 st.markdown("---")
 st.write("Thank you for exploring the dashboard!")
