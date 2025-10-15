@@ -37,7 +37,7 @@ st.plotly_chart(fig_scatter1)
 # st.checkbox("Show only vehicles in excellent condition"):
 filtered_df = df[df["condition"] == "excellent"]
 fig_filtered = px.histogram(filtered_df, x="price", title="Price Distribution (Excellent Condition)")
-st.plotly_chart(fig_filtered)
+fig_filtered.show()
 
 
 st.markdown("---")
