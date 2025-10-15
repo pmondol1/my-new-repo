@@ -34,7 +34,7 @@ fig_scatter1 = px.scatter(df, x='odometer', y='price', title='Price vs Odometer'
 st.plotly_chart(fig_scatter1)
 
 # Checkbox to filter by condition
-if st.checkbox("Show only vehicles in excellent condition"):
+# st.checkbox("Show only vehicles in excellent condition"):
 filtered_df = df[df["condition"] == "excellent"]
 fig_filtered = px.histogram(filtered_df, x="price", title="Price Distribution (Excellent Condition)")
 st.plotly_chart(fig_filtered)
