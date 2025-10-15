@@ -6,13 +6,11 @@ import io
 
 # Header
 st.header('US Vehicles Data Dashboard')
-st.write("Welcome! This dashboard helps you explore trends in used vehicle listings across the U.S. Use the charts and filters below to uncover insights into pricing, mileage, and more. 🚗📊")
+st.write("Welcome! This dashboard helps you explore trends in used vehicle listings across the U.S. It allows users to interactively visualize trends in price, mileage, condition, and more using a clean and intuitive interface.")
 
 
 # Load the dataset
 st.header('Dataset')
-
-
 file_path = 'vehicles_us.csv'
 df = pd.read_csv(file_path)
 df = df.convert_dtypes()
@@ -43,5 +41,5 @@ if st.checkbox("Show only vehicles in excellent condition"):
 
 
 st.markdown("---")
-st.write("Thank you for exploring the dashboard!🚙📈")
+st.write("Thank you for exploring the dashboard!")
 
