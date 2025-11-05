@@ -1,69 +1,58 @@
 # US Vehicles Data Dashboard
-This project is a web-based dashboard designed to explore patters in used vehicle listings across the United States.  It allows users to interactively visualize trends in price, mileage, condition, and more using a clean, intuitive interface powered by Streamlit.
----
 
-##  Live App
-
-Explore the dashboard here: [US Vehicles Dashboard on Render](https://my-new-repo-d50l.onrender.com)
+This project is a tool to simulate random events using real-world vehicle data. It allows users to explore patterns in used car listings across the United States through interactive visualizations. The dashboard is built with Streamlit and integrates data analysis, charting, and user-driven filtering to simulate how different vehicle attributes might influence pricing and trends.
 
 ---
 
-##  Project Structure
+## Live Application
 
-my-new-repo/
-── app.py 
-# Streamlit dashboard code
-── vehicles_us.csv 
-# Dataset used for analysis 
-── requirements.txt 
-# Python dependencies 
-── .streamlit/ 
-       └── config.toml 
-# Render deployment configuration 
-── notebooks/ 
-        └── EDA.ipynb 
-# Exploratory data analysis notebook 
-        └── README.md 
-        
-# Project overview and instructions
----
-
-## 🧪 Features
-
-- Interactive dashboard built with Streamlit
-- Histograms and scatter plots using Plotly Express
-- Sidebar filter for vehicle condition
-- Summary statistics and dataset diagnostics
-- Box plots, bar charts, and correlation heatmap
-- Responsive layout and clear visual storytelling
+Access the deployed dashboard on Render: [US Vehicles Dashboard](https://my-new-repo-d50l.onrender.com)
 
 ---
 
-## 🛠️ Technologies Used
+## Project Overview
 
-- Python
-- Pandas
-- Streamlit
-- Plotly Express
-- Jupyter Notebook
+This project was developed as part of the Software Development Tools sprint. It demonstrates the use of Git, GitHub, VS Code, virtual environments, and deployment platforms. The dashboard simulates random events by allowing users to interact with vehicle data and observe how different filters and visualizations affect the output.
 
 ---
 
-##  How to Run Locally
+## Methods and Libraries Used
 
-1. Clone the repository: git clone git clone git clone https://github.com/pmondol1/my-new-repo.git
+The dashboard was implemented using the following tools and libraries:
+
+- **Python**: Core programming language
+- **Pandas**: Data manipulation and analysis
+- **Streamlit**: Web app framework for building dashboards
+- **Plotly Express**: Interactive charts and visualizations
+- **Altair**: Additional charting options
+- **Jupyter Notebook**: Exploratory data analysis (EDA)
+
+---
+
+## Dataset
+
+The project uses the `vehicles_us.csv` dataset, which contains listings of used vehicles in the United States. It includes features such as price, year, mileage, condition, and more.
+
+---
+
+## How to Launch Locally
+
+To run this project on your local machine:
+
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/pmondol1/my-new-repo.git
    cd my-new-repo
-2. Install dependencies: pip install -r requirements.txt
-3. Run the app: streamlit run app.py
-
-Make sure the vehicles_us.csv file is in the root directory of the project.
-
-project url: https://my-new-repo-d50l.onrender.com
 
 
+2.**Install your dependencies**
+    pip install -r requirements.txt
 
+3. **Run the streamlit app**
+     streamlit run app.py
 
----
+4. Make sure the vehicles_us.csv file is in the root directory of the project.
 
+## Deployment 
 
-
+The project is deployed on Render. All necessary files including app.py, config.toml, and requirements.txt are committed and pushed to GitHub to ensure successful deployment.
